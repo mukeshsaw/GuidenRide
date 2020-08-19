@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <title>Detail</title>
+  <style>
+    .container {
+      background: whitesmoke;
+    }
+
+    .pdf_dim {
+      width: 100%;
+      height: auto;
+      background: white;
+      margin: 20px;
+      /* margin-left: 15px; */
+
+    }
+
+    /* table.center {
+      margin-left: auto;
+      margin-right: auto;
+    } */
+
+    .table1 {
+      width: 90%;
+      max-width: 90%;
+      margin-bottom: 5px;
+      background-color: #fff;
+      border: none;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    thead {
+      margin-left: 5px;
+      padding-left: 10px;
+    }
+
+    tbody {
+      border: 1px solid rgb(196, 144, 196);
+      margin-left: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  {% load static %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-1">
+
+      </div>
+      <div class="col-sm-10 pdf_dim" style="border: 2px solid black;">
+        <div class="row">
+          <div class="col-sm m-8">
+            <h1 class="text-center" style="margin-top: 40px;">Invoice - Booking Receipt</h1>
+            <!-- <h1>Guide n Ride in India</h1> -->
+          </div>
+          <div class="col-sm-4 text-right">
+            <img src="{% static 'images/web_logo.png' %} " width="180" height="145" class="rounded mr-5" alt="LOGO"
+              id="logo">
+          </div>
+        </div>
+        <div class="row text-right mt-5">
+          <div class="col-sm text-right mr-5">
+            <h3>Guide n Ride in India</h3>
+            <h6>+33 (0)1 86 95 33 67</h6>
+            <h6>booking@tuktukinparis.com</h6>
+            <h6>www.tuktukinparis.com</h6>
+          </div>
+        </div>
+        <div class="row text-right mt-5 ml-5">
+          <div class="col-sm-8 text-left mr-5">
+            <h3>{{name}}</h3>
+            <i class="fa fa-envelope"></i>
+            <h6>{{email}}</h6>
+            <h6>{{phone}}</h6>
+            <h6>{{country}}</h6>
+          </div>
+
+          <div class="col-sm mr-5">
+            <div class="row" style="border: 1px solid rgb(129, 126, 126);">
+              <div class="col-sm" style="background-color:rgb(226, 224, 219);">
+                <p class="text-left">Date</p>
+                <p class="text-left">Total</p>
+              </div>
+              <div class="col-sm">
+                <p>01/02/2020</p>
+                <p>{{total}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+        <div class="row">
+          <div class="col ">
+            <!-- <table class="table1 ml mt-5" style="border:1px solid rgb(196, 144, 196);">
+              <thead style="border:1px solid thistle; background-color: whitesmoke;">
+              <tr class="ml-5">
+                <th class="text-left ml-5">produit</th>
+                <th class="text-center">Tarif</th>
+                <th class="text-right">Montant</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" >2H30M TOUR</td>
+                <td class="text-center">{{price}}</td>
+                <td  class="text-right">{{total}}</td>
+              </tr>
+              <tr>
+                <td class="text-left">{{date}}</td>
+                <td class="text-center">Passengers: {{passenger}}</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="text-left">{{time}}</td>
+              </tr>
+            </tbody>
+            </table> -->
+            <table class="table1 mt-4 mb-4" style="border:1px solid rgb(196, 144, 196);"
+              style="border: solid 1px #aaa; text-align: left; width: 90%; margin:0; font-size: 9pt;">
+              <thead>
+                <tr class="text-left">
+                  <th>Produit</th>
+                  <th colspan="2">Tarif</th>
+                  <th style="text-align: right; width: 1%;">Montant</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr class="text-left">
+                  <td style="padding: 5px; ">
+
+                    <strong id="tour">{{tour}}</strong><br>
+                    lun. août 17, 2020
+                    <br><i class="fa fa-clock-o"></i>{{time}}
+                  </td>
+                  <td style="" colspan="2">1 @ {{price}}<br>
+                    <strong title="passengers">passengers:</strong> {{passenger}}</td>
+                  <td style="text-align: right;  white-space: nowrap; position: relative;">
+                    <div class="min-height-amount-invoice">{{total}}</div>
+
+                  </td>
+                </tr>
+                <tr style="border-top: solid 1px #000;">
+                  <td rowspan="5" colspan="2" style="border-right: solid 1px #000; color: #444"></td>
+                  <td class="show-cell-webkit" colspan="2" style="height:100%; padding: 0"></td>
+                </tr>
+
+
+                <tr class="sum-row border-top">
+                  <th>Sous-total: </th>
+                  <td>{{price}}</td>
+                </tr>
+
+
+                <tr class="sum-row border-top">
+                  <th>Total: </th>
+                  <td class="item_total_price">{{total}}</td>
+                </tr>
+
+                <tr class="sum-row">
+                  <th>Montant payé: </th>
+                  <td>00  </td>
+                </tr>
+
+
+
+
+                <tr id="CF_due" class="sum-row" style="border-top: double 3px #111; background: #fff6ad;">
+                  <th>Solde dû: </th>
+                  <td><strong>{{total}}</strong></td>
+                </tr>
+
+
+                <tr>
+                  <td colspan="4" class="xprint"
+                    style="border-top: solid 1px #aaa; background-color: #e1e1e1; text-align: right; padding: 5px 0 5px 5px">
+                    <div style="font-weight: bold; padding: 5px 0; color: #999; font-size: 8pt; text-align: right;">
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+            <div style="color: #333; font-size: 11pt;" class="ml-5">
+              <p style="margin-top: 2em">
+                <strong><i class="fa fa-comment-o" style="font-size: 1.3em; color: #777;"></i> {{name}}: </strong>
+                <em>{{desc}}</em>
+              </p>
+            </div>
+            <div class="row">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-8">
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4 mb-5 mt-2" >
+        <a href="{% url 'home' %}"> <button class="btn btn-primary btn-lg btn-block">PAY {{total}}</button></a>
+
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </div>
+  
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
+      
+    <script>
+      var name = document.getElementById('name').innerText;
+      var total = document.getElementById('total').innerText;
+      var email = document.getElementById('email').innerText;
+      var price = document.getElementById('price').innerText;
+      console.log(name,total.slice(0,4),email,price);
+
+      if (price == "39.90€") {
+        document.getElementById('tour').innerHTML="2H30 TOUR";
+      }
+      else if (price == "49.90€") {
+        document.getElementById('tour').innerHTML="4H TOUR";
+      }
+      else {
+        document.getElementById('tour').innerHTML="8H TOUR";
+      }
+      console.log("working");
+      localStorage.setItem("name", name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("total", total.slice(0,4));
+
+    </script>  
+</body>
+
+</html>

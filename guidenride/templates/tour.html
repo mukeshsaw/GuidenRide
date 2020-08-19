@@ -1,0 +1,152 @@
+{% extends 'base_code.html' %}
+{% block title %} Our Tours {% endblock %}
+{% block head %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+{% block css %}
+<style>
+  [type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* IMAGE STYLES */
+  [type=radio]+img {
+    cursor: pointer;
+
+  }
+
+  /* CHECKED STYLES */
+  [type=radio]:checked+img {
+    outline: 2px solid #f00;
+  }
+</style>
+{% endblock %}
+{% endblock %}
+<br>
+{% block body %}
+<br>
+<br>
+{%load static %}
+<div style="background-color: rgba(40, 206, 35, 0.87);">
+  <div class="container my-3">
+    <h1>OUR TOURS</h1><br>
+    <form action="/tour" method="post" id="tourFormId">{% csrf_token %}
+      <div class="row">
+        <div class="col h5">
+          <label for="name">I AM BOOKING FOR ?</label>
+          <select class="form-control h2 " id="passenger" name="passenger">
+            <option value="1" selected>1 PASSENGER</option>
+            <option value="2">2 PASSEMGER</option>
+            <option value="3">3 PASSEMGER</option>
+            <option value="4">4 PASSEMGER</option>
+            <option value="5">5 PASSEMGER</option>
+            <option value="6">6 PASSEMGER</option>
+            <option value="7">7 PASSEMGER</option>
+            <option value="8">8 PASSEMGER</option>
+            <option value="9">9 PASSEMGER</option>
+            <option value="10">10 PASSEMGER</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-sm" id="tour1">
+          <div class="card" style="width: 18rem;">
+            <label>
+              <input type="radio" name="test" value="v1" id='v1' checked>
+              <img src="{% static 'images/2.png' %}" class="card-img-top tourClass" alt="..." id='imageid1'>
+            </label>
+            <div class="card-body">
+              <!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+              <div class="row">
+                <div class="col-sm-8">
+                  <input type="hidden" name="tour1" id="tour1" value="2H30M TOUR">
+                  <span class="h5">2H30M TOUR</span>
+                </div>
+                <div class="col-sm-4">
+                  <input type="hidden" name="price1" id="price1" value="39.90€">
+                  <span class="h5">39.90€</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--     <img src={% static "2.png" %} alt="Map image" width="300" height="300">-->
+        </div>
+
+        <div class="col-sm" id="tour1">
+          <div class="card" style="width: 18rem;">
+            <label>
+              <input type="radio" name="test" value="v2" id='v2'>
+              <img src="{% static 'images/3.png' %}" class="card-img-top tourClass" alt="..." id='imageid2'>
+
+              <div class="card-body">
+                <!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="hidden" name="tour2" id="tour2" value="4H TOUR">
+                    <span class="h5">4H TOUR</span>
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="hidden" name="price2" id="price2" value="49.90€">
+                    <span class="h5">49.90€</span>
+                  </div>
+                </div>
+              </div>
+            </label>
+          </div>
+          <!--     <img src={% static "2.png" %} alt="Map image" width="300" height="300">-->
+        </div>
+
+
+        <div class="col-sm" id="tour1">
+          <div class="card" style="width: 18rem;">
+            <label>
+              <input type="radio" name="test" value="v3" id='v3'>
+              <img src="{% static 'images/1.png' %}" class="card-img-top tourClass" alt="..." id='imageid3'>
+            </label>
+            <div class="card-body">
+              <!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+              <div class="row">
+                <div class="col-sm-8">
+                  <input type="hidden" name="tour3" id="tour3" value="8H TOUR">
+                  <span class="h5">8H TOUR</span>
+                </div>
+                <div class="col-sm-4">
+                  <input type="hidden" name="price3" id="price3" value="69.90€">
+                  <span class="h5">69.90€</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--     <img src={% static "2.png" %} alt="Map image" width="300" height="300">-->
+        </div>
+        <br><br><br>
+      </div>
+      <!-- <button type="submit" name="submit" class="btn btn-success">Submit</button>
+      <a href="/"> <button type="button" name="submit" class="btn btn-secondary">Back</button></a> -->
+    </form>
+  </div>
+</div>
+{% block js %}
+<script>
+  $(document).ready(function () {
+    $("#v1").click(function () {
+      //  var v=$('#v1').val();
+      //  console.log(v);
+      $("#tourFormId").submit();
+    });
+    $( "#v2").click(function () {
+      $("#tourFormId").submit();
+    });
+    $( "#v3").click(function () {
+      $("#tourFormId").submit();
+    });
+  });
+</script>
+<!--<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous">-->
+<!--</script>-->
+{% endblock %}
+{% endblock %}

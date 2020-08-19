@@ -1,0 +1,68 @@
+<html>
+
+<head>
+  <title>Company Details</title>
+  <style>
+    body {
+      background-color: #f7f7f7;
+    }
+
+    @page {
+      size: a4 portrait;
+
+      @frame header_frame {
+        -pdf-frame-content: headerz_content;
+        left: 50pt;
+        width: 512pt;
+        top: 90pt;
+        height: 40pt;
+      }
+
+      @frame content-frame {
+        left: 50pt;
+        width: 512pt;
+        top: 772pt;
+        height: 632pt;
+      }
+
+      @frame footer-name {
+        -pdf-frmae-content: footer_content;
+        left: 50pt;
+        width: 512pt;
+        top: 772pt;
+        height: 20pt;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <h1>Test Template</h1>
+    /*
+    <!-- {% for paragraph in paragraphs %}
+    <p>{{ paragraph }}</p>
+  {% endfor %} --> */
+    <div id="header_content">
+      <h3>Optimim Invoice Company </h3>
+      <h4>name: {{name}}</h4>
+      <h4>Passenger: {{passenger}}</h4>
+      <h4>Tour: {{tour}}</h4>
+      <h4>Price for 1 pers: {{price}}</h4>
+
+
+      <h4>Price for {{passenger}} pers: {{total}}</h4>
+      <h4>Email: {{email}}</h4>
+      <h4>Date: {{date}}</h4>
+      <h4>Time: {{time}}</h4>
+      <h4>Mobile: {{phone}}</h4>
+      <h4>Country: {{country}}</h4>
+      <h4>Note: {{desc}}</h4>
+    </div>
+
+
+  </div>
+</body>
+
+</html>

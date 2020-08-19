@@ -1,0 +1,883 @@
+{% extends 'base_code.html' %}
+{% block title %} Guide N Ride{% endblock %}
+{% block head %}
+{% block js %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
+
+
+{% endblock %}
+{% block css %}
+{%load static %}
+<style>
+  [type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* IMAGE STYLES */
+  [type=radio]+img {
+    cursor: pointer;
+
+  }
+
+  /* CHECKED STYLES */
+  [type=radio]:checked+img {
+    /* outline: 2px solid #f00; */
+  }
+
+  // Mixin itself
+  @mixin clearfix() {
+    &::after {
+      display: block;
+      content: "";
+      clear: both;
+    }
+  }
+
+  // Usage as a mixin
+  .element {
+    @include clearfix;
+  }
+
+  /* #myHeader{
+   position: fixed;
+   top: 0;
+   width: 100%;
+ } */
+  .sticky {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .radius-img {
+    border-radius: 30px;
+  }
+
+  .pad {
+    padding: 15px;
+  }
+
+  .marg_top {
+    margin-top: 15px;
+  }
+</style>
+{% endblock %}
+{% endblock %}
+{% block body %}
+{%load static %}
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span>Menu</span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+
+<div class="container-fluid">
+  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
+    <div class="clearfix d-inline" id="myHeader">
+      
+      <div class="row " id="header" style="border: 2px solid black;">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+          <div class="row pad_top marg_top"></div>
+          <a href="#bourtour"><button class="btn btn-light float-right m-3">
+              <h4>OURTOUR</h4>
+            </button></a>
+          <a href="#bevents"><button class="btn btn-light float-right m-3">
+              <h4>EVENTS</h4>
+            </button></a>
+          <div class="row"></div>
+        </div>
+        <div class="col-sm-2">
+          <div class="text-center">
+            <img src="{% static 'images/web_logo.png' %} " width="200" height="160" class="rounded" alt="LOGO"
+              id="logo">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row pad_top marg_top" id="an-elemen"></div>
+          <a href="#babout"><button type="button" class="btn btn-light float-left m-3">
+              <h4>ABOUT US</h4>
+            </button></a>
+          <a href="#bcontact"><button type="button" class="btn btn-light float-left m-3">
+              <h4>CONTACT</h4>
+            </button></a>
+
+        </div>
+        <div class="col-sm-1">
+          <div class="row">
+            <div class="col-2">
+              <img src="https://www.tuktukinparis.com/wp-content/themes/tuktukinparis/img/icon_flagFR-circle.png"
+                class="rounded-circle float-right" alt="Image" width="40" height="40">
+            </div>
+            <!-- <div><h3>ENG</h3></div>  -->
+            <div class="col-2">
+              <img src="https://www.tuktukinparis.com/wp-content/themes/tuktukinparis/img/icon_flagEN-circle.png"
+                class="rounded-circle float-left" alt="Image" width="40" height="40">
+              <!-- <div><h3>FR</h3></div> -->
+            </div>
+            <div class="col-8"></div>
+            <div class="row">
+              <!-- <div class="col-6 ml-6"><h3 class="text-right">ENG</h3></div> -->
+              <!-- <div class="col-6 float-left"><h3>FR</h3></div> -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  
+</div>
+<div class="background"></div>
+<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+  <div class="class container-fluid">
+    <img src="{% static 'images/p1.png' %}" width="100%">
+    <!-- <video width="530" height="440" controls autoplay>
+      <source src=" https://youtu.be/Vq0JCR6_YpA" type="video/mp4" width="100%">
+      </source>
+    </video> -->
+  </div>
+  <div class="container-fluid">
+    <img src="{% static 'images/line.png' %}" width="100%" alt="...">
+  </div>
+
+  <div class="first-info" style="background-color: rgba(193, 196, 62, 0.87); padding-top: 25px;">
+    <div class="container" style="background-color: rgba(243, 243, 91, 0.555);">
+      <div>
+        <h1 class="text-justify text-center">GUIDENRIDE IN INDIA</h1>
+      </div>
+      <div class="row">
+        <div class="col m-5">
+          <img src="{% static 'images/t4.png' %}" class="rounded-circle " alt="Image" width="400" height="300">
+        </div>
+        <div class="col  my-5 radius-img mr-5" style="background-color: whitesmoke;">
+          <p class="text-justify h5 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus voluptates
+            consequatur ad voluptatem delectus sapiente doloribus et vitae incidunt nobis blanditiis, nisi veritatis
+            sunt culpa dolorem quas non expedita eos quia. Ad laudantium nisi alias molestias officiis blanditiis
+            quis officia quidem. Deserunt dolores illum repellendus dignissimos dolor assumenda facilis vero placeat
+            explicabo rerum odio laudantium nobis, magnam repellat </p>
+
+        </div>
+        <div class="w-100"></div>
+        <div class="col  m-5 radius-img h5 ml-5" style="background-color: whitesmoke;">
+          <div>
+            <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam ad quo dolorem, et
+              hic, ipsum expedita sint voluptate repellendus alias blanditiis nostrum! Ex dignissimos nulla rem aliquid
+              culpa alias asperiores ipsa, dolorum, quas a voluptas! Doloremque veniam voluptate sapiente in pariatur
+              consectetur, voluptas fuga deserunt. A, dolore, repellat veritatis deleniti rerum in ea doloremque iste
+              distinctio tempora alias vel? Optio sequi suscipit</p>
+          </div>
+        </div>
+        <div class="col  m-5">
+          <img src="{% static 'images/t6.png' %}" class="rounded-circle d-block" alt="Image" width="400" height="300">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <img src="{% static 'images/line.png' %}" width="100%" alt="...">
+  </div>
+
+  <div style="background-color: rgba(44, 46, 212, 0.555); padding-top: 25px;">
+    <div class="container my-3" id="bourtour">
+      <h1 class="text-center">OUR TOURS</h1><br>
+      <form action="/tour" method="post" id="tourFormId">{% csrf_token %}
+        <div class="row">
+          <div class="col h5">
+            <label for="name">I AM BOOKING FOR ?</label>
+            <select class="form-control h2 " id="passenger" name="passenger">
+              <option value="1" selected>1 PASSENGER</option>
+              <option value="2">2 PASSEMGER</option>
+              <option value="3">3 PASSEMGER</option>
+              <option value="4">4 PASSEMGER</option>
+              <option value="5">5 PASSEMGER</option>
+              <option value="6">6 PASSEMGER</option>
+              <option value="7">7 PASSEMGER</option>
+              <option value="8">8 PASSEMGER</option>
+              <option value="9">9 PASSEMGER</option>
+              <option value="10">10 PASSEMGER</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-sm ">
+            <div class="card center" style="width: 18rem;" id="tour_border1">
+              <label>
+                <input type="radio" name="test" value="v1" id='v1' checked>
+                <img src="{% static 'images/2.png' %}" class="card-img-top" alt="...">
+              </label>
+              <div class="card-body">
+                <!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="hidden" name="tour1" id="tour1" value="2H30M TOUR">
+                    <span class="h5">2H30M TOUR</span>
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="hidden" name="price1" id="price1" value="39.90€">
+                    <span class="h5">39.90€</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--     <img src={% static "2.png" %} alt="Map image" width="300" height="300">-->
+          </div>
+
+          <div class="col-sm tour_border">
+            <div class="card" style="width: 18rem;" id="tour_border2">
+              <label>
+                <input type="radio" name="test" value="v2" id='v2'>
+                <img src="{% static 'images/3.png' %}" class="card-img-top" alt="...">
+
+                <div class="card-body">
+                  <!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <input type="hidden" name="tour2" id="tour2" value="4H TOUR">
+                      <span class="h5">4H TOUR</span>
+                    </div>
+                    <div class="col-sm-4">
+                      <input type="hidden" name="price2" id="price2" value="49.90€">
+                      <span class="h5">49.90€</span>
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <!--     <img src={% static "2.png" %} alt="Map image" width="300" height="300">-->
+          </div>
+
+
+          <div class="col-sm tour_border">
+            <div class="card" style="width: 18rem;" id="tour_border3">
+              <label>
+                <input type="radio" name="test" value="v3" id='v3'>
+                <img src="{% static 'images/1.png' %}" class="card-img-top" alt="...">
+              </label>
+              <div class="card-body">
+                <!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                <div class="row">
+                  <div class="col-sm-8">
+                    <input type="hidden" name="tour3" id="tour3" value="8H TOUR">
+                    <span class="h5">8H TOUR</span>
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="hidden" name="price3" id="price3" value="69.90€">
+                    <span class="h5">69.90€</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--     <img src={% static "2.png" %} alt="Map image" width="300" height="300">-->
+          </div>
+          <br><br><br>
+        </div>
+        
+        <!-- <button type="submit" name="submit" class="btn btn-success">Submit</button>
+        <a href="/"> <button type="button" name="submit" class="btn btn-secondary">Back</button></a> -->
+      </form>
+    </div>
+    <br>
+    <br>
+  </div>
+
+  <div class="container-fluid">
+    <img src="{% static 'images/line.png' %}" width="100%" alt="...">
+  </div>
+
+
+  <div
+    style="background-color: rgba(144, 104, 196, 0.555); padding-top: 25px; mirgin-top: 25px; padding-bottom: 25px; mirgin-bottom: 25px;">
+    <div class="container " id="bevents">
+      <h1 class="text-center">EVENT HIRE</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis sapiente, soluta perferendis dolorum hic
+        aliquam culpa quos incidunt placeat laborum, velit odio facilis commodi repellendus ullam et quod molestias
+        suscipit.</p>
+      <br>
+      <div class="row ">
+        <div class="col-sm-4">
+          <div class="row-sm">
+            <div class="col my-5">
+              <img src="{% static 'images/t4.png' %}" class="radius-img d-block" alt="Image" width="350" height="250">
+            </div>
+          </div>
+          <div class="row-sm">
+            <div class="col radius-img" style="background-color: whitesmoke;">
+              <h5 class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus voluptates
+                consequatur ad voluptatem delectus sapiente doloribus et vitae incidunt nobis blanditiis, nisi veritatis
+                sunt culpa dolorem quas non expedita eos quia. Ad laudantium nisi alias molestias officiis blanditiis
+                facilis, quaerat, aspernatur odit ipsum commodi eligendi voluptate, aperiam sequi obcaecati. Ea, magni
+              </h5>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-4">
+          <div class="row-sm">
+            <div class="col  my-5 radius-img " style="background-color: whitesmoke;">
+              <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus voluptates
+                consequatur ad voluptatem delectus sapiente doloribus et vitae incidunt nobis blanditiis, nisi veritatis
+                sunt culpa dolorem quas non expedita eos quia. Ad laudantium nisi alias molestias officiis blanditiis
+                facilis, quaerat, aspernatur odit ipsum commodi eligendi voluptate, aperiam sequi obcaecati. Ea, magni
+              </p>
+
+            </div>
+          </div>
+          <div class="row-sm">
+            <div class="col my-5">
+              <img src="{% static 'images/t4.png' %}" class="radius-img d-block" alt="Image" width="350" height="250">
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-4">
+
+          <div class="container my-3"
+            style="background-color: rgba(40, 13, 192, 0.555); padding-top: 30px; padding-bottom:40px; mirgin: 50px;">
+
+            <form action="/events" method="post">{% csrf_token %}
+              <!--     <input type="hidden" class="form-control" id="id" name="id" value="id">-->
+              <div class="form-group pad">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required>
+              </div>
+              <div class="form-group pad">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email"
+                  required>
+              </div>
+              <div class="form-group pad">
+                <div class="row">
+                  <div class="col-sm">
+                    <select class="form-control" id="day" name="day" required>
+                      <option value="DD" selected>DD</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                      <option>13</option>
+                      <option>14</option>
+                      <option>15</option>
+                      <option>16</option>
+                      <option>17</option>
+                      <option>18</option>
+                      <option>19</option>
+                      <option>20</option>
+                      <option>21</option>
+                      <option>22</option>
+                      <option>23</option>
+                      <option>24</option>
+                      <option>25</option>
+                      <option>26</option>
+                      <option>27</option>
+                      <option>28</option>
+                      <option>29</option>
+                      <option>30</option>
+                      <option>31</option>
+                    </select>
+                  </div>
+                  <div class="col-sm">
+                    <select class="form-control" id="month" name="month" required>
+                      <option value="MM" selected>MM</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+
+                    </select>
+
+                  </div>
+                  <div class="col-sm">
+                    <select class="form-control" id="year" name="year" required>
+                      <option value="YYY" selected>YYY</option>
+                      <option>2020</option>
+                      <option>2021</option>
+                      <option>2022</option>
+                      <option>2023</option>
+                      <option>2024</option>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group pad">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Mobile No."
+                      required>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group pad">
+                    <!--    <input type="tel" class="form-control" id="country" name="country" placeholder="Enter Country">-->
+                    <select class="form-control" id="country" name="country" required>
+                      <option value="AF">Afghanistan</option>
+                      <option value="AL">Albania</option>
+                      <option value="DZ">Algeria</option>
+                      <option value="AS">American Samoa</option>
+                      <option value="AD">Andorra</option>
+                      <option value="AO">Angola</option>
+                      <option value="AI">Anguilla</option>
+                      <option value="AG">Antigua And Barbuda</option>
+                      <option value="AR">Argentina</option>
+                      <option value="AM">Armenia</option>
+                      <option value="AW">Aruba</option>
+                      <option value="AU">Australia</option>
+                      <option value="AT">Austria</option>
+                      <option value="AZ">Azerbaijan</option>
+                      <option value="BS">Bahamas</option>
+                      <option value="BH">Bahrain</option>
+                      <option value="BD">Bangladesh</option>
+                      <option value="BB">Barbados</option>
+                      <option value="BY">Belarus</option>
+                      <option value="BE">Belgium</option>
+                      <option value="BZ">Belize</option>
+                      <option value="BJ">Benin</option>
+                      <option value="BM">Bermuda</option>
+                      <option value="BT">Bhutan</option>
+                      <option value="BO">Bolivia</option>
+                      <option value="BA">Bosnia And Herzegovina</option>
+                      <option value="BW">Botswana</option>
+                      <option value="BR">Brazil</option>
+                      <option value="BN">Brunei Darussalam</option>
+                      <option value="BG">Bulgaria</option>
+                      <option value="BF">Burkina Faso</option>
+                      <option value="BI">Burundi</option>
+                      <option value="KH">Cambodia</option>
+                      <option value="CM">Cameroon</option>
+                      <option value="CA">Canada</option>
+                      <option value="CV">Cape Verde</option>
+                      <option value="KY">Cayman Islands</option>
+                      <option value="CF">Central African Republic</option>
+                      <option value="TD">Chad</option>
+                      <option value="CL">Chile</option>
+                      <option value="CN">China</option>
+                      <option value="MF">Collectivity of Saint Martin</option>
+                      <option value="CO">Colombia</option>
+                      <option value="KM">Comoros</option>
+                      <option value="CD">Congo (DC)</option>
+                      <option value="CG">Congo (R)</option>
+                      <option value="CK">Cook Islands</option>
+                      <option value="CR">Costa Rica</option>
+                      <option value="HR">Croatia</option>
+                      <option value="CU">Cuba</option>
+                      <option value="CW">Curaçao</option>
+                      <option value="CY">Cyprus</option>
+                      <option value="CZ">Czech Republic</option>
+                      <option value="DK">Denmark</option>
+                      <option value="DJ">Djibouti</option>
+                      <option value="DM">Dominica</option>
+                      <option value="DO">Dominican Republic</option>
+                      <option value="TP">East Timor</option>
+                      <option value="EC">Ecuador</option>
+                      <option value="EG">Egypt</option>
+                      <option value="SV">El Salvador</option>
+                      <option value="GQ">Equatorial Guinea</option>
+                      <option value="ER">Eritrea</option>
+                      <option value="EE">Estonia</option>
+                      <option value="ET">Ethiopia</option>
+                      <option value="FK">Falkland Islands</option>
+                      <option value="FO">Faroe Islands</option>
+                      <option value="FJ">Fiji</option>
+                      <option value="FI">Finland</option>
+                      <option value="FR">France</option>
+                      <option value="PF">French Polynesia</option>
+                      <option value="GA">Gabon</option>
+                      <option value="GM">Gambia</option>
+                      <option value="GE">Georgia</option>
+                      <option value="DE">Germany</option>
+                      <option value="GH">Ghana</option>
+                      <option value="GI">Gibraltar</option>
+                      <option value="GR">Greece</option>
+                      <option value="GL">Greenland</option>
+                      <option value="GD">Grenada</option>
+                      <option value="GP">Guadeloupe</option>
+                      <option value="GU">Guam</option>
+                      <option value="GT">Guatemala</option>
+                      <option value="GN">Guinea</option>
+                      <option value="GW">Guinea-bissau</option>
+                      <option value="GY">Guyana</option>
+                      <option value="HT">Haiti</option>
+                      <option value="VA">Holy See</option>
+                      <option value="HN">Honduras</option>
+                      <option value="HK">Hong Kong</option>
+                      <option value="HU">Hungary</option>
+                      <option value="IS">Iceland</option>
+                      <option value="IN" selected="">India</option>
+                      <option value="ID">Indonesia</option>
+                      <option value="IR">Iran</option>
+                      <option value="IQ">Iraq</option>
+                      <option value="IE">Ireland</option>
+                      <option value="IL">Israel</option>
+                      <option value="IT">Italy</option>
+                      <option value="CI">Ivory coast</option>
+                      <option value="JM">Jamaica</option>
+                      <option value="JP">Japan</option>
+                      <option value="JO">Jordan</option>
+                      <option value="KZ">Kazakhstan</option>
+                      <option value="KE">Kenya</option>
+                      <option value="KI">Kiribati</option>
+                      <option value="KW">Kuwait</option>
+                      <option value="KG">Kyrgyzstan</option>
+                      <option value="LA">Laos</option>
+                      <option value="LV">Latvia</option>
+                      <option value="LB">Lebanon</option>
+                      <option value="LS">Lesotho</option>
+                      <option value="LR">Liberia</option>
+                      <option value="LI">Liechtenstein</option>
+                      <option value="LT">Lithuania</option>
+                      <option value="LU">Luxembourg</option>
+                      <option value="LY">Lybia</option>
+                      <option value="MO">Macao</option>
+                      <option value="MK">Macedonia</option>
+                      <option value="MG">Madagascar</option>
+                      <option value="MW">Malawi</option>
+                      <option value="MY">Malaysia</option>
+                      <option value="MV">Maldives</option>
+                      <option value="ML">Mali</option>
+                      <option value="MT">Malta</option>
+                      <option value="MQ">Martinique</option>
+                      <option value="MR">Mauritania</option>
+                      <option value="MU">Mauritius</option>
+                      <option value="MX">Mexico</option>
+                      <option value="MD">Moldova</option>
+                      <option value="MC">Monaco</option>
+                      <option value="MN">Mongolia</option>
+                      <option value="ME">Montenegro</option>
+                      <option value="MS">Montserrat</option>
+                      <option value="MA">Morocco</option>
+                      <option value="MZ">Mozambique</option>
+                      <option value="MM">Myanmar</option>
+                      <option value="NA">Namibia</option>
+                      <option value="NR">Nauru</option>
+                      <option value="NP">Nepal</option>
+                      <option value="NL">Netherlands</option>
+                      <option value="AN">Netherlands Antilles</option>
+                      <option value="NC">New Caledonia</option>
+                      <option value="NZ">New Zealand</option>
+                      <option value="NI">Nicaragua</option>
+                      <option value="NE">Niger</option>
+                      <option value="NG">Nigeria</option>
+                      <option value="KP">North Korea</option>
+                      <option value="MP">Northern Mariana Islands</option>
+                      <option value="NO">Norway</option>
+                      <option value="OM">Oman</option>
+                      <option value="PK">Pakistan</option>
+                      <option value="PW">Palau</option>
+                      <option value="PS">Palestine</option>
+                      <option value="PA">Panama</option>
+                      <option value="PG">Papua New Guinea</option>
+                      <option value="PY">Paraguay</option>
+                      <option value="PE">Peru</option>
+                      <option value="PH">Philippines</option>
+                      <option value="PL">Poland</option>
+                      <option value="PT">Portugal</option>
+                      <option value="PR">Puerto Rico</option>
+                      <option value="QA">Qatar</option>
+                      <option value="RE">Reunion</option>
+                      <option value="RO">Romania</option>
+                      <option value="RU">Russia</option>
+                      <option value="RW">Rwanda</option>
+                      <option value="BL">Saint Barthélemy</option>
+                      <option value="KN">Saint Kitts and Nevis</option>
+                      <option value="SPM">Saint-Pierre et Miquelon</option>
+                      <option value="WS">Samoa</option>
+                      <option value="SM">San Marino</option>
+                      <option value="ST">Sao Tome And Principe</option>
+                      <option value="SA">Saudi Arabia</option>
+                      <option value="SN">Senegal</option>
+                      <option value="RS">Serbia</option>
+                      <option value="SC">Seychelles</option>
+                      <option value="SL">Sierra Leone</option>
+                      <option value="SG">Singapore</option>
+                      <option value="SX">Sint Maarten</option>
+                      <option value="SK">Slovakia</option>
+                      <option value="SI">Slovenia</option>
+                      <option value="SB">Solomon Islands</option>
+                      <option value="SO">Somalia</option>
+                      <option value="ZA">South Africa</option>
+                      <option value="KR">South Korea</option>
+                      <option value="SS">South Sudan</option>
+                      <option value="ES">Spain</option>
+                      <option value="LK">Sri Lanka</option>
+                      <option value="LC">St Lucia</option>
+                      <option value="VC">St Vincent And The Grenadines</option>
+                      <option value="SD">Sudan</option>
+                      <option value="SR">Suriname</option>
+                      <option value="SZ">Swaziland</option>
+                      <option value="SE">Sweden</option>
+                      <option value="CH">Switzerland</option>
+                      <option value="SY">Syria</option>
+                      <option value="TW">Taiwan</option>
+                      <option value="TJ">Tajikistan</option>
+                      <option value="TZ">Tanzania</option>
+                      <option value="TH">Thailand</option>
+                      <option value="TG">Togo</option>
+                      <option value="TO">Tonga</option>
+                      <option value="TT">Trinidad And Tobago</option>
+                      <option value="TN">Tunisia</option>
+                      <option value="TR">Turkey</option>
+                      <option value="TM">Turkmenistan</option>
+                      <option value="TC">Turks and Caicos Islands</option>
+                      <option value="TV">Tuvalu</option>
+                      <option value="UG">Uganda</option>
+                      <option value="UA">Ukraine</option>
+                      <option value="AE">United Arab Emirates</option>
+                      <option value="GB">United Kingdom</option>
+                      <option value="US">United States</option>
+                      <option value="UY">Uruguay</option>
+                      <option value="UZ">Uzbekistan</option>
+                      <option value="VU">Vanuatu</option>
+                      <option value="VE">Venezuela</option>
+                      <option value="VN">Vietnam</option>
+                      <option value="VG">Virgin Islands, British</option>
+                      <option value="VI">Virgin Islands, U.S.</option>
+                      <option value="YE">Yemen</option>
+                      <option value="ZM">Zambia</option>
+                      <option value="ZW">Zimbabwe</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group pad">
+                <textarea class="form-control" id="desc" name="desc" rows="4" placeholder="What do you need?"
+                  required></textarea>
+              </div>
+              <button type="submit" name="submit" class="btn btn-warning h1 btn-lg btn-block">SEND</button>
+              <!-- <button type="submit" id='privatisation-form-submit' name="submit" class="btn btn-success"
+                onclick="myFunction()">Submit</button>
+              <a href="/"> <button type="button" name="submit" class="btn btn-secondary">Back</button></a> -->
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <img src="https://source.unsplash.com/500x300/?car,bike" alt="" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+            height="500">
+<img src="https://source.unsplash.com/500x300/?bike,scooter" alt="" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+height="500">             -->
+
+
+  <div class="container-fluid">
+    <img src="{% static 'images/line.png' %}" width="100%" alt="...">
+  </div>
+
+  <div
+    style="background-color: rgba(205, 218, 28, 0.555); padding-top: 25px; mirgin-top: 25px; padding-bottom: 25px; mirgin-bottom: 25px;">
+    <div class="container" id="babout">
+      <h1 class="text-center pad"><span
+          style="display: inline-block; border-bottom: 3px solid rgb(0,190,0); text-align: center;">ABOUT US</span></h1>
+      <div class="row">
+        <div class="col-sm-4 pad">
+          <p class="text-center h5 ">Tuktuk in Paris is a fun and unforgettable way to discover the city and its
+            monuments.
+          </p>
+        </div>
+        <div class="col-sm-4 pad">
+          <p class="text-center h5">Thanks to its 100% electric and silent vehicles, Tuktuk in Paris wishes to become
+            the first eco-friendly tourist service in the city.
+
+          </p>
+          <!-- style="width: 250px; height: 200;" -->
+        </div>
+        <div class="col-sm-4 pad">
+          <p class="text-center h5">Our Tuktuks, specially designed for the ride, are available for booking 7 days a
+            week.
+          </p>
+        </div>
+      </div>
+      <h2 class="text-center pad">FIND US</h2>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <img src="{% static 'images/line.png' %}" width="100%" alt="...">
+  </div>
+  <div
+    style="background-color: rgba(39, 221, 212, 0.555); padding-top: 25px; mirgin-top: 25px; padding-bottom: 25px; mirgin-bottom: 25px;">
+    <div class="container" id="bcontact">
+      <h1 class="text-center pad">
+        <span style="display: inline-block; border-bottom: 3px solid rgb(0,190,0); text-align: center;">CONTACT
+          US</span></h1>
+      <div class="row">
+        <div class="col-sm-4 pad">
+          <span class="contact-info">
+            <img class="rounded mx-auto d-block" src="{% static 'images/email.png' %}">
+            <a class="text-center" style="display:block;margin-top:10px;" href="mailto:info@tuktukinparis.com">
+              <h2>info@tuktukinparis.com</h2>
+            </a>
+          </span>
+          <p class="text-center ">
+          </p>
+        </div>
+        <div class="col-sm-4 pad ">
+          <span class="contact-info">
+            <div class="row">
+              <div class="col-sm-2 mr-5 pr-2">
+                <img class="rounded mx-auto d-block  text-center" src="{% static 'images/phone.png' %}">
+              </div>
+              <div class="col-sm-2 ml-5">
+                <img class="rounded mx-auto d-block  text-center" src="{% static 'images/whatsapp.png' %}">
+              </div>
+            </div>
+            <span class="text-center h3" style="display:block;margin-top:10px;">+33 (0)1 86 95 33 67
+              <span style="display:block;margin-top:10px;font-size:12px;">
+                <h5>7
+                  days / 7 • 10:00AM-8:00PM</h5>
+              </span>
+            </span>
+          </span>
+          <p class="text-center"> </p>
+          <!-- style="width: 250px; height: 200;" -->
+        </div>
+        <div class="col-sm-4 pad">
+
+
+          <span class="contact-info ">
+            <img class="rounded mx-auto d-block" src="{% static 'images/location.png' %}">
+            <a class="text-center  h2" style="display:block;margin-top:10px;" href="mailto:booking@tuktukinparis.com">
+              booking@tuktukinparis.com </a>
+          </span>
+          <p class="text-center">
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="container-fluid">
+    <img src="{% static 'images/line.png' %}" width="100%" alt="...">
+  </div>
+
+</div>
+</div>
+<script>
+  $(document).ready(function () {
+
+    $("#header").attr('style', 'background: blue !important;');
+    $(window).scroll(function () {
+      // console.log($(window).scrollTop());
+      var a = $(window).scrollTop();
+      // console.log(typeof(a));
+      if (a > 200) {
+        $('#logo').css({ 'width': "250", 'height': "170" });
+        $("#header").attr('style', 'background: blue !important;');
+
+      }
+      else {
+        $('#logo').css({ 'width': "200", 'height': "150" });
+        // $('#header').css({"background-color": "transparent";});
+      }
+    });
+
+    $("#tour_border1").mouseenter(function () {
+      $("#tour_border1").css({ 'border': '2px solid red', 'width': '19rem' });
+
+    });
+    $("#tour_border1").mouseleave(function () {
+      $("#tour_border1").css({ 'border': '0px solid green', 'width': '18rem' });
+    });
+
+    $("#tour_border2").mouseenter(function () {
+      $("#tour_border2").css({ 'border': '2px solid red', 'width': '19rem' });
+
+    });
+    $("#tour_border2").mouseleave(function () {
+      $("#tour_border2").css({ 'border': '0px solid green', 'width': '18rem' });
+    });
+
+    $("#tour_border3").mouseenter(function () {
+      $("#tour_border3").css({ 'border': '2px solid red', 'width': '19rem' });
+
+    });
+    $("#tour_border3").mouseleave(function () {
+      $("#tour_border3").css({ 'border': '0px solid green', 'width': '18rem' });
+    });
+
+    $("#v1").click(function () {
+      // $("#v1").css("border":"2px solid green");
+      $("#tourFormId").submit();
+    });
+    $("#v2").click(function () {
+      $("#tourFormId").submit();
+    });
+    $("#v3").click(function () {
+      $("#tourFormId").submit();
+    });
+
+  });
+</script>
+
+<script>
+  window.onscroll = function () { myFunction() };
+  var header = document.getElementById("myHeader");
+  var sticky = header.offsetTop;
+
+  function myFunction() {
+    if (window.pageYOffset > sticky) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  }
+</script>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base_code.html' %}
+{% block title %}About{% endblock %}
+{% block css %}
+.pad {
+padding: 10px;
+}
+{% endblock %}
+{% block body %}
+<p>About page</p>
+<div
+    style="background-color: rgba(233, 212, 22, 0.555); padding-top: 25px; mirgin-top: 25px; padding-bottom: 25px; mirgin-bottom: 25px;">
+    <div class="container">
+        <h1 class="text-center p-30">ABOUT US</h1>
+        <div class="row">
+            <div class="col-sm-4">
+                <p class="text-center py-10">Tuktuk in Paris is a fun and unforgettable way to discover the city and its
+                    monuments.
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <p class="text-center">Thanks to its 100% electric and silent vehicles, Tuktuk in Paris wishes to become
+                    the first eco-friendly tourist service in the city.
+
+                </p>
+                <!-- style="width: 250px; height: 200;" -->
+            </div>
+            <div class="col-sm-4">
+                <p class="text-center">Our Tuktuks, specially designed for the ride, are available for booking 7 days a
+                    week.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div
+    style="background-color: rgba(39, 221, 212, 0.555); padding-top: 25px; mirgin-top: 25px; padding-bottom: 25px; mirgin-bottom: 25px;">
+    <div class="container" id="babout">
+        <h1 class="text-center pad">
+            <span style="display: inline-block; border-bottom: 3px solid rgb(0,190,0); text-align: center;">CONTACT
+                US</span></h1>
+        <div class="row">
+            <div class="col-sm-4 pad">
+                <span class="contact-info">
+                    <img class="contact-picto"
+                        src="https://www.tuktukinparis.com/wp-content/themes/tuktukinparis/img/picto_email.png">
+                    <a style="display:block;margin-top:10px;" href="mailto:info@tuktukinparis.com">
+                        info@tuktukinparis.com </a>
+                </span>
+                <p class="text-center ">
+                </p>
+            </div>
+            <div class="col-sm-4 pad">
+                <span class="contact-info">
+                    <img class="contact-picto"
+                        src="https://www.tuktukinparis.com/wp-content/themes/tuktukinparis/img/picto_phone.png">
+                    <span class="contact-info-container" style="display:block;margin-top:10px;">+33 (0)1 86 95 33 67
+                        <span class="contact-info-aditional" style="display:block;margin-top:10px;font-size:12px;">7
+                            days / 7 • 10:00AM-8:00PM</span>
+                    </span>
+                </span>
+                <p class="text-center"> </p>
+                <!-- style="width: 250px; height: 200;" -->
+            </div>
+            <div class="col-sm-4 pad">
+
+
+                <span class="contact-info">
+                    <img class="contact-picto"
+                        src="https://www.tuktukinparis.com/wp-content/themes/tuktukinparis/img/picto_booking.png">
+                    <a style="display:block;margin-top:10px;" href="mailto:booking@tuktukinparis.com">
+                        booking@tuktukinparis.com </a>
+                </span>
+                <p class="text-center">
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}{% endblock %}

@@ -1,0 +1,400 @@
+{% extends 'base_code.html' %}
+{% block title %} Our Tours {% endblock %}
+{% block head %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+{% block css %}
+<style>
+  [type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* IMAGE STYLES */
+  [type=radio]+img {
+    cursor: pointer;
+
+  }
+
+  /* CHECKED STYLES */
+  [type=radio]:checked+img {
+    outline: 2px solid #f00;
+  }
+</style>
+{% endblock %}
+{% endblock %}
+<br>
+{% block body %}
+<br>
+<br>
+{%load static %}
+<div style="background-color: rgba(40, 206, 305, 0.57);">
+<div class="container ">
+  <form action="{% url 'booktour'%}" id="booktour_form" method="post">{% csrf_token %}
+    <div class="row">
+      <div class="col-sm-5 bg-info text-white">
+        <div>
+          <h2 style="width: 400px; margin-top: 15px; margin-left: 30px; ">YOUR BOOKING</h2>
+        </div>
+        <div class="card" style="width: 390px; margin-top: 15px; margin-left: 28px; ">
+          <img src="{% static 'images/3.png' %}" class="card-img-top" alt="..." width="400px">
+        </div>
+        <input type="hidden" name="passenger" id="passenger" value='{{passenger}}'>
+        <input type="hidden" name="tour" class="tour1" id="tour" value={{tour}}>
+        <input type="hidden" name="date" id="date" value={{date}}>
+        <input type="hidden" name="time" id="time" value={{time}}>
+        <input type="hidden" name="price" id="price" value={{price}}>
+        <input type="hidden" name="total" id="total" value={{total}}>
+        <div>
+          <div class="row mt-4">
+            <div class="col-sm-7 ml-4">
+              <span>YOUR TOUR : </span>
+            </div>
+            <div class="col-sm-4 ">
+              <span class="tour1"> {{tour}}</span>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-sm-7 ml-4 ">
+              <span>DATE: </span>
+            </div>
+            <div class="col-sm-4 ">
+              <span> {{date}}</span>
+            </div>
+            <br>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-sm-7 ml-4">
+              <span> TIME:</span>
+            </div>
+            <div class="col-sm-4">
+              <span> {{time}} </span>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-7 ml-4">
+              <span> TOUR FOR 1 PERS TOTAL : </span>
+            </div>
+            <div class="col-sm-4">
+              <span id="price"> {{price}} </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-7 ml-4">
+              <span> TOUR FOR {{passenger}} PERS TOTAL : </span>
+            </div>
+            <div class="col-sm-4">
+              <span id="total"> {{total}} </span>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+      <div class="col-sm-6 h5 ml-5">
+
+        <!--     <input type="hidden" class="form-control" id="id" name="id" value="id">-->
+        <div class="form-group">
+          <label for="name">YOUR NAME:</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">YOUR EMAIL:</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" required>
+        </div>
+
+
+        <div class="form-group">
+          <label for="phone">MOBILE:</label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Mobile No." minlength="10"
+            maxlength="10" required>
+        </div>
+
+
+        <div class="form-group">
+          <label for="country">COUNTRY:</label>
+          <select class="form-control" id="country" name="country" required>
+            <option value="AF">Afghanistan</option>
+            <option value="AL">Albania</option>
+            <option value="DZ">Algeria</option>
+            <option value="AS">American Samoa</option>
+            <option value="AD">Andorra</option>
+            <option value="AO">Angola</option>
+            <option value="AI">Anguilla</option>
+            <option value="AG">Antigua And Barbuda</option>
+            <option value="AR">Argentina</option>
+            <option value="AM">Armenia</option>
+            <option value="AW">Aruba</option>
+            <option value="AU">Australia</option>
+            <option value="AT">Austria</option>
+            <option value="AZ">Azerbaijan</option>
+            <option value="BS">Bahamas</option>
+            <option value="BH">Bahrain</option>
+            <option value="BD">Bangladesh</option>
+            <option value="BB">Barbados</option>
+            <option value="BY">Belarus</option>
+            <option value="BE">Belgium</option>
+            <option value="BZ">Belize</option>
+            <option value="BJ">Benin</option>
+            <option value="BM">Bermuda</option>
+            <option value="BT">Bhutan</option>
+            <option value="BO">Bolivia</option>
+            <option value="BA">Bosnia And Herzegovina</option>
+            <option value="BW">Botswana</option>
+            <option value="BR">Brazil</option>
+            <option value="BN">Brunei Darussalam</option>
+            <option value="BG">Bulgaria</option>
+            <option value="BF">Burkina Faso</option>
+            <option value="BI">Burundi</option>
+            <option value="KH">Cambodia</option>
+            <option value="CM">Cameroon</option>
+            <option value="CA">Canada</option>
+            <option value="CV">Cape Verde</option>
+            <option value="KY">Cayman Islands</option>
+            <option value="CF">Central African Republic</option>
+            <option value="TD">Chad</option>
+            <option value="CL">Chile</option>
+            <option value="CN">China</option>
+            <option value="MF">Collectivity of Saint Martin</option>
+            <option value="CO">Colombia</option>
+            <option value="KM">Comoros</option>
+            <option value="CD">Congo (DC)</option>
+            <option value="CG">Congo (R)</option>
+            <option value="CK">Cook Islands</option>
+            <option value="CR">Costa Rica</option>
+            <option value="HR">Croatia</option>
+            <option value="CU">Cuba</option>
+            <option value="CW">Curaçao</option>
+            <option value="CY">Cyprus</option>
+            <option value="CZ">Czech Republic</option>
+            <option value="DK">Denmark</option>
+            <option value="DJ">Djibouti</option>
+            <option value="DM">Dominica</option>
+            <option value="DO">Dominican Republic</option>
+            <option value="TP">East Timor</option>
+            <option value="EC">Ecuador</option>
+            <option value="EG">Egypt</option>
+            <option value="SV">El Salvador</option>
+            <option value="GQ">Equatorial Guinea</option>
+            <option value="ER">Eritrea</option>
+            <option value="EE">Estonia</option>
+            <option value="ET">Ethiopia</option>
+            <option value="FK">Falkland Islands</option>
+            <option value="FO">Faroe Islands</option>
+            <option value="FJ">Fiji</option>
+            <option value="FI">Finland</option>
+            <option value="FR">France</option>
+            <option value="PF">French Polynesia</option>
+            <option value="GA">Gabon</option>
+            <option value="GM">Gambia</option>
+            <option value="GE">Georgia</option>
+            <option value="DE">Germany</option>
+            <option value="GH">Ghana</option>
+            <option value="GI">Gibraltar</option>
+            <option value="GR">Greece</option>
+            <option value="GL">Greenland</option>
+            <option value="GD">Grenada</option>
+            <option value="GP">Guadeloupe</option>
+            <option value="GU">Guam</option>
+            <option value="GT">Guatemala</option>
+            <option value="GN">Guinea</option>
+            <option value="GW">Guinea-bissau</option>
+            <option value="GY">Guyana</option>
+            <option value="HT">Haiti</option>
+            <option value="VA">Holy See</option>
+            <option value="HN">Honduras</option>
+            <option value="HK">Hong Kong</option>
+            <option value="HU">Hungary</option>
+            <option value="IS">Iceland</option>
+            <option value="IN" selected="">India</option>
+            <option value="ID">Indonesia</option>
+            <option value="IR">Iran</option>
+            <option value="IQ">Iraq</option>
+            <option value="IE">Ireland</option>
+            <option value="IL">Israel</option>
+            <option value="IT">Italy</option>
+            <option value="CI">Ivory coast</option>
+            <option value="JM">Jamaica</option>
+            <option value="JP">Japan</option>
+            <option value="JO">Jordan</option>
+            <option value="KZ">Kazakhstan</option>
+            <option value="KE">Kenya</option>
+            <option value="KI">Kiribati</option>
+            <option value="KW">Kuwait</option>
+            <option value="KG">Kyrgyzstan</option>
+            <option value="LA">Laos</option>
+            <option value="LV">Latvia</option>
+            <option value="LB">Lebanon</option>
+            <option value="LS">Lesotho</option>
+            <option value="LR">Liberia</option>
+            <option value="LI">Liechtenstein</option>
+            <option value="LT">Lithuania</option>
+            <option value="LU">Luxembourg</option>
+            <option value="LY">Lybia</option>
+            <option value="MO">Macao</option>
+            <option value="MK">Macedonia</option>
+            <option value="MG">Madagascar</option>
+            <option value="MW">Malawi</option>
+            <option value="MY">Malaysia</option>
+            <option value="MV">Maldives</option>
+            <option value="ML">Mali</option>
+            <option value="MT">Malta</option>
+            <option value="MQ">Martinique</option>
+            <option value="MR">Mauritania</option>
+            <option value="MU">Mauritius</option>
+            <option value="MX">Mexico</option>
+            <option value="MD">Moldova</option>
+            <option value="MC">Monaco</option>
+            <option value="MN">Mongolia</option>
+            <option value="ME">Montenegro</option>
+            <option value="MS">Montserrat</option>
+            <option value="MA">Morocco</option>
+            <option value="MZ">Mozambique</option>
+            <option value="MM">Myanmar</option>
+            <option value="NA">Namibia</option>
+            <option value="NR">Nauru</option>
+            <option value="NP">Nepal</option>
+            <option value="NL">Netherlands</option>
+            <option value="AN">Netherlands Antilles</option>
+            <option value="NC">New Caledonia</option>
+            <option value="NZ">New Zealand</option>
+            <option value="NI">Nicaragua</option>
+            <option value="NE">Niger</option>
+            <option value="NG">Nigeria</option>
+            <option value="KP">North Korea</option>
+            <option value="MP">Northern Mariana Islands</option>
+            <option value="NO">Norway</option>
+            <option value="OM">Oman</option>
+            <option value="PK">Pakistan</option>
+            <option value="PW">Palau</option>
+            <option value="PS">Palestine</option>
+            <option value="PA">Panama</option>
+            <option value="PG">Papua New Guinea</option>
+            <option value="PY">Paraguay</option>
+            <option value="PE">Peru</option>
+            <option value="PH">Philippines</option>
+            <option value="PL">Poland</option>
+            <option value="PT">Portugal</option>
+            <option value="PR">Puerto Rico</option>
+            <option value="QA">Qatar</option>
+            <option value="RE">Reunion</option>
+            <option value="RO">Romania</option>
+            <option value="RU">Russia</option>
+            <option value="RW">Rwanda</option>
+            <option value="BL">Saint Barthélemy</option>
+            <option value="KN">Saint Kitts and Nevis</option>
+            <option value="SPM">Saint-Pierre et Miquelon</option>
+            <option value="WS">Samoa</option>
+            <option value="SM">San Marino</option>
+            <option value="ST">Sao Tome And Principe</option>
+            <option value="SA">Saudi Arabia</option>
+            <option value="SN">Senegal</option>
+            <option value="RS">Serbia</option>
+            <option value="SC">Seychelles</option>
+            <option value="SL">Sierra Leone</option>
+            <option value="SG">Singapore</option>
+            <option value="SX">Sint Maarten</option>
+            <option value="SK">Slovakia</option>
+            <option value="SI">Slovenia</option>
+            <option value="SB">Solomon Islands</option>
+            <option value="SO">Somalia</option>
+            <option value="ZA">South Africa</option>
+            <option value="KR">South Korea</option>
+            <option value="SS">South Sudan</option>
+            <option value="ES">Spain</option>
+            <option value="LK">Sri Lanka</option>
+            <option value="LC">St Lucia</option>
+            <option value="VC">St Vincent And The Grenadines</option>
+            <option value="SD">Sudan</option>
+            <option value="SR">Suriname</option>
+            <option value="SZ">Swaziland</option>
+            <option value="SE">Sweden</option>
+            <option value="CH">Switzerland</option>
+            <option value="SY">Syria</option>
+            <option value="TW">Taiwan</option>
+            <option value="TJ">Tajikistan</option>
+            <option value="TZ">Tanzania</option>
+            <option value="TH">Thailand</option>
+            <option value="TG">Togo</option>
+            <option value="TO">Tonga</option>
+            <option value="TT">Trinidad And Tobago</option>
+            <option value="TN">Tunisia</option>
+            <option value="TR">Turkey</option>
+            <option value="TM">Turkmenistan</option>
+            <option value="TC">Turks and Caicos Islands</option>
+            <option value="TV">Tuvalu</option>
+            <option value="UG">Uganda</option>
+            <option value="UA">Ukraine</option>
+            <option value="AE">United Arab Emirates</option>
+            <option value="GB">United Kingdom</option>
+            <option value="US">United States</option>
+            <option value="UY">Uruguay</option>
+            <option value="UZ">Uzbekistan</option>
+            <option value="VU">Vanuatu</option>
+            <option value="VE">Venezuela</option>
+            <option value="VN">Vietnam</option>
+            <option value="VG">Virgin Islands, British</option>
+            <option value="VI">Virgin Islands, U.S.</option>
+            <option value="YE">Yemen</option>
+            <option value="ZM">Zambia</option>
+            <option value="ZW">Zimbabwe</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="desc">NOTE:</label>
+          <textarea class="form-control" id="desc" name="desc" rows="4" placeholder="What do you need?"
+            required></textarea>
+        </div>
+
+        <button type="submit" name="submit" class="btn btn-success">Submit</button>
+        <a href="/"> <button type="button" name="submit" class="btn btn-secondary">Back</button></a>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    var price = $('#price').val();
+    if (price == "39.90€") {
+      $('.tour1').html('2H30 TOUR');
+    }
+    else if (price == "49.90€") {
+      $('.tour1').html('4H TOUR');
+    }
+    else {
+      $('.tour1').html('8H TOUR');
+    }
+    $("#booktour_form").validate({
+      rules: {
+        name: {
+          required: true,
+          minlength: 3,
+          number: false
+        },
+        email: {
+          required: true,
+          email: true
+        },
+        phone: {
+          required: true,
+          min: 10,
+          maxlenght: 10
+        },
+
+      }
+    });
+  });
+</script>
+<!--<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous">-->
+<!--</script>-->
+{% endblock %}
+{% endblock %}
